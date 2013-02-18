@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}显示request的META信息{% endblock %}
+{% block body %}
+{% for k, v in values %}
+<ul>
+	<li>{{ forloop.counter }}</li>
+	<li>{{ k }}</li>
+	<li>{{ v }}</li>
+</ul>
+{% endfor %}
+{% endblock %}

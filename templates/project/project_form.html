@@ -1,0 +1,16 @@
+{% extends 'base_site.html' %}
+{% block content %}
+{% if form.errors %}
+<p style="color: red;">
+	Please correct the error{{ form.errors|pluralize }} below.
+</p>
+{% endif %}
+
+<form action="" method="post" class="form-horizontal">
+	<table>
+		{{ form.as_table }}
+	</table>
+	<input type="submit" value="Submit">
+</form>
+{% endblock %}
+</html>

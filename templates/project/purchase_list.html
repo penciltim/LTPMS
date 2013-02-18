@@ -1,0 +1,38 @@
+{% extends 'base_site.html' %}
+{% block title %}项目基本信息管理{% endblock %}
+
+{% block navbar_active1 %}{% endblock %}
+{% block navbar_active3 %}class="active"{% endblock %}
+
+{% block content %}
+<a href="add/">
+<button class="btn btn-primary btn-mini">
+	新增
+</button></a>
+<table class="table table-hover table-bordered"  style="font-size: 8px">
+	<thead>
+		<tr>
+			<th>序号</th>
+			<th>采购需求单</th>
+			<th>项目名称</th>
+			<th>项目经理</th>
+			<th>采购内容</th>
+			<th>采购金额</th>
+			<th>采购需求批复日期</th>
+		</tr>
+	</thead>
+	{% for p in purchase_list %}
+	<tbody>
+		<tr>
+			<td>{{ forloop.counter }}</td>
+			<td>{{ p.caigouxuqiudanmingcheng }}</td>
+			<td>{{ p.project }}</td>
+			<td>{{ p.project.xiangmujingli }}</td>
+			<td>{{ p.caigouneirong }}</td>
+			<td>{{ p.caigoujine }}</td>
+			<td>{{ p.caigouriqi }}</td>
+		</tr>
+	</tbody>
+	{% endfor %}
+</table>
+{% endblock %}

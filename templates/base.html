@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<script src="/static/jquery-1.9.1.min.js"></script>
+		<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+		<meta charset="utf-8">
+		<title>{% block title %}联通项目管理系统 {% endblock %}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="Justim">
+		<!-- Le styles -->
+		<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<style>
+			body {
+				padding-top: 60px; /* 60px to make the container go all the way
+				 to the bottom of the topbar */
+			}
+		</style>
+		<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+		<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js">
+		</script>
+		<![endif]-->
+		<!-- Le fav and touch icons -->
+		<link rel="shortcut icon" href="#">
+		<style>
+		</style>
+	</head>
+	<body>
+		<div class="container-fluid">
+			{% block navbar %}{% endblock %}
+			{% block content %}
+			<div class="span1"></div>
+			<div class="hero-unit span12">
+				<div>
+					<h1> 欢迎您进入 项目管理系统! </h1>
+					<p>
+						&nbsp;
+					</p>
+				</div>
+				<a class="btn btn-primary btn-large" href="/project/">
+				<div>
+					马上开始 »
+				</div> </a>
+			</div>
+			{% endblock %}
+		</div>
+		<hr>
+		<div>
+			{% block footer %}© ChinaUnicom, powerd by Justim, Go to <a href="/admin">Admin</a>{% endblock %}
+		</div>
+	</body>
+</html>

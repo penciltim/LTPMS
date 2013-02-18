@@ -1,0 +1,89 @@
+{% extends 'base_site.html' %}
+{% block title %}项目基本信息管理{% endblock %}
+
+{% block navbar_active1 %}{% endblock %}
+{% block navbar_active2 %}class="active"{% endblock %}
+
+{% block content %}
+<a href="add/">
+<button class="btn btn-primary btn-mini">
+	新增
+</button></a> Page {{ projects.number }} of {{ projects.paginator.num_pages }}.
+<div class="btn-group">
+	<a class="btn dropdown-toggle btn-mini btn-primary" data-toggle="dropdown" href="#"> 每页显示 <span class="caret"></span> </a>
+	<ul class="dropdown-menu">
+		<li>
+			<a href="?num_per_page=10{% if page %}&page={{ page }}{% endif %}">10</a>
+		</li>
+		<li>
+			<a href="?num_per_page=25{% if page %}&page={{ page }}{% endif %}">25</a>
+		</li>
+		<li>
+			<a href="?num_per_page=50{% if page %}&page={{ page }}{% endif %}">50</a>
+		</li>
+		<li>
+			<a href="?num_per_page=100{% if page %}&page={{ page }}{% endif %}">100</a>
+		</li>
+	</ul>
+</div>
+<table class="table table-hover table-bordered table-condensed"  style="font-size: 12px">
+	<thead>
+		<tr>
+			<th>序号</th>
+			<th>项目年份</th>
+			<th>项目名称</th>
+			<th>项目经理</th>
+			<th>项目编号</th>
+			<th>可研批复号</th>
+			<th>可研批复金额</th>
+			<th>可研批复日期</th>
+			<th>设计批复号</th>
+			<th>设计批复金额</th>
+			<th>设计批复日期</th>
+			<th>项目状态</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	{% for p in projects %}
+	<tbody>
+		<tr>
+			<td>{{ forloop.counter }}</td>
+			<td>{{ p.xiangmunianfen }}</td>
+			<td>{{ p.xiangmumingcheng }}</td>
+			<td>{{ p.xiangmujingli }}</td>
+			<td>{{ p.xiangmubianhao }}</td>
+			<td>{{ p.keyanpifuhao }}</td>
+			<td>{{ p.keyanpifujine }}</td>
+			<td>{{ p.keyanpifuriqi }}</td>
+			<td>{{ p.shejipifuhao }}</td>
+			<td>{{ p.shejipifujine }}</td>
+			<td>{{ p.shejipifuriqi }}</td>
+			<td>{{ p.xiangmuzhuangtai }}</td>
+			<td><a href="{{ p.id }}/delete/"><i class="icon-trash"></i></a> | <a href="{{ p.id }}/edit/"><i class="icon-pencil"></i></a></td>
+		</tr>
+	</tbody>
+	{% endfor %}
+</table>
+<div class="pagination pagination-mini">
+	<ul>
+		{% if projects.has_previous %}
+		<li class="previous">
+			<a href="?{% if num_per_page %}num_per_page={{num_per_page}}&{% endif %}page={{ projects.previous_page_number }}">previous</a>
+		</li>
+		{% else %}
+		<li class="disabled">
+			<a>previous</a>
+		</li>
+		{% endif %}
+		{% if projects.has_next %}
+		<li>
+			<a href="?{% if num_per_page %}num_per_page={{num_per_page}}&{% endif %}page={{ projects.next_page_number }}">next</a>
+		</li>
+		{% else %}
+		<li class="disabled">
+			<a>next</a>
+		</li>
+		{% endif %}
+	</ul>
+</div>
+{% endblock %}

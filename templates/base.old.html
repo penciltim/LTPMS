@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+		<title>{% block title %}联通项目管理系统 {% endblock %}</title>
+		<meta name="description" content="" />
+		<meta name="author" content="Justim" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		
+		<!-- Bootstrap -->
+   		<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	</head>
+
+	<body>
+		<script src="/static/jquery-1.9.1.min.js"></script>
+    	<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+		<div>
+			{% block body %}{% endblock %}
+		</div>
+		<div>
+		<footer>
+				<p>
+					{% block footer %}powerd by Justim, Go to <a href="/admin">Admin</a>{% endblock %}
+				</p>
+		</footer>
+		</div>
+	</body>
+</html>
