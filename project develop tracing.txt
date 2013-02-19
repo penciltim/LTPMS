@@ -1,0 +1,21 @@
+联通 PMS develop tracing
+
+2/12
+done:
+1.缩小表格左右padding（修改css）
+2.<a>里面加<button>解决button颜色不对的问题
+3.使用jetstrap，重塑页面，变成黑色主题
+4.使用图标库 修改|删除 变成纯图标，更加简洁
+
+2/13
+todo:
+1.分页 2.filter 3.seach 4.dynamic table 5.chage some owesome theme 6.LT brand 7.add form，的形式要仔细再改造一下
+done:
+1.分页，还需要微调
+
+2/14
+todo:1.filter 2.seach 3.dynamic table 4.chage some owesome theme 5.LT brand 6.add form，的形式要仔细再改造一下
+done:1.增加自定义每页显示数
+
+2/15
+todo:to many  1.user扩展，需要登录，登录后只能添加自己的项目
