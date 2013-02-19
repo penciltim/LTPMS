@@ -59,7 +59,7 @@
 			<td>{{ p.shejipifujine }}</td>
 			<td>{{ p.shejipifuriqi }}</td>
 			<td>{{ p.xiangmuzhuangtai }}</td>
-			<td><a href="{{ p.id }}/delete/"><i class="icon-trash"></i></a> | <a href="{{ p.id }}/edit/"><i class="icon-pencil"></i></a></td>
+			<td>{% if perms.project.delete_project %}<a href="{{ p.id }}/delete/"><i class="icon-trash"></i></a>{% endif %}{% if perms.project.change_project %} | <a href="{{ p.id }}/edit/"><i class="icon-pencil"></i></a>{% endif %}</td>
 		</tr>
 	</tbody>
 	{% endfor %}

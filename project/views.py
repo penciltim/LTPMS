@@ -1,4 +1,5 @@
 # coding=utf-8
+from django.contrib.auth.decorators import login_required, permission_required
 from django.core.context_processors import csrf
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponseRedirect
@@ -7,9 +8,11 @@ from django.template.context import RequestContext
 from models import *
 from project.forms import ProjectForm
 
-def base_site(request):
-    return render_to_response('base_site.html', context_instance=RequestContext(request))
+@login_required
+def home(request):
+    return render_to_response('home.html', locals())
 
+@login_required
 def project_list(request):
     page = request.GET.get('page')
     num_per_page = request.GET.get('num_per_page')
@@ -27,7 +30,7 @@ def project_list(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         projects = paginator.page(paginator.num_pages)
 #    assert False
-    return render_to_response('project/project_list.html', locals())
+    return render_to_response('project/project_list.html', locals(), context_instance=RequestContext(request))
 
 def project_view(request, project_id):
     p = Project.objects.get(id=project_id)
@@ -35,6 +38,7 @@ def project_view(request, project_id):
     return render_to_response('project/project_view.html', {'form': form})
 
 # 增
+@permission_required('project.add_project')
 def project_add(request):
     if request.method == 'POST':
         form = ProjectForm(request.POST)
@@ -45,16 +49,19 @@ def project_add(request):
         form = ProjectForm()
     return render_to_response('project/project_form.html', {'form': form}, context_instance=RequestContext(request))
 # 删
+@permission_required('project.delete_project')
 def project_delete(request, project_id):
     Project.objects.get(id=project_id).delete()
     return HttpResponseRedirect('/project/')
 
 # 改
+@permission_required('project.change_project')
 def project_update(request):
     project_list = Project.objects.all()
     return render_to_response('project/project.html', locals())
 
 # 查
+@permission_required('project.change_project')
 def project_edit(request, project_id):
     p = Project.objects.get(id=project_id)
     if request.method == 'POST':
@@ -64,7 +71,7 @@ def project_edit(request, project_id):
             return HttpResponseRedirect('/project/')
     else:
         form = ProjectForm(instance=p)
-    return render_to_response('project/project_form.html', {'form': form})
+    return render_to_response('project/project_form.html', {'form': form}, context_instance=RequestContext(request))
 
 
 def purchase(request):

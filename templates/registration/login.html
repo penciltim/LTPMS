@@ -1,20 +1,20 @@
-{% extends "base_site.html" %}
+{% extends "base.html" %}
 
 {% block content %}
+{% if form.errors %}
+<p class="text-error">
+	账户名或密码错误
+</p>
+{% endif %}
 
-  {% if form.errors %}
-    <p class="error">Sorry, that's not a valid username or password</p>
-  {% endif %}
-
-  <form action="" method="post">
-  	{% csrf_token %}
-    <label for="username">User name:</label>
-    <input type="text" name="username" value="" id="username">
-    <label for="password">Password:</label>
-    <input type="password" name="password" value="" id="password">
-
-    <input type="submit" value="login" />
-    <input type="hidden" name="next" value="/" />
-  </form>
-
+<form action="" method="post">
+	{% csrf_token %}
+	<label for="username">用户名:</label>
+	<input type="text" name="username" placeholder="请输入您的用户名" id="username">
+	<label for="password">密码:</label>
+	<input type="password" name="password" placeholder="请输入您的密码" id="password">
+	<input type="submit" value="login" class="btn"/>
+	<input type="hidden" name="next" value={{ next }} />
+</form>
+<script type="text/javascript">document.getElementById('username').focus()</script>
 {% endblock %}

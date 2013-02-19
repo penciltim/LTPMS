@@ -1,4 +1,4 @@
-联通 PMS develop tracing  test
+联通 PMS develop tracing
 
 2/12
 done:
@@ -19,3 +19,7 @@ done:1.增加自定义每页显示数
 
 2/15
 todo:to many  1.user扩展，需要登录，登录后只能添加自己的项目
+
+2/20
+todo:
+1.如何将项目经理和user挂钩，实现一般项目经理只可编辑自己地的项目

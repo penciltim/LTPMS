@@ -23,28 +23,14 @@
 		<![endif]-->
 		<!-- Le fav and touch icons -->
 		<link rel="shortcut icon" href="#">
-		<style>
-		</style>
 	</head>
 	<body>
+		{% block body %}
 		<div class="container-fluid">
 			{% block navbar %}{% endblock %}
-			{% block content %}
-			<div class="span1"></div>
-			<div class="hero-unit span12">
-				<div>
-					<h1> 欢迎您进入 项目管理系统! </h1>
-					<p>
-						&nbsp;
-					</p>
-				</div>
-				<a class="btn btn-primary btn-large" href="/project/">
-				<div>
-					马上开始 »
-				</div> </a>
-			</div>
-			{% endblock %}
+			{% block content %}{% endblock %}
 		</div>
+		{% endblock%}
 		<hr>
 		<div>
 			{% block footer %}© ChinaUnicom, powerd by Justim, Go to <a href="/admin">Admin</a>{% endblock %}
