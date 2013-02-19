@@ -8,7 +8,7 @@ from models import *
 from project.forms import ProjectForm
 
 def base_site(request):
-    return render_to_response('base_site.html', locals(), context_instance=RequestContext(request))
+    return render_to_response('base_site.html', context_instance=RequestContext(request))
 
 def project_list(request):
     page = request.GET.get('page')
@@ -43,7 +43,7 @@ def project_add(request):
             return HttpResponseRedirect('/project/')
     else:
         form = ProjectForm()
-    return render_to_response('project/project_form.html', {'form': form})
+    return render_to_response('project/project_form.html', {'form': form}, context_instance=RequestContext(request))
 # 删
 def project_delete(request, project_id):
     Project.objects.get(id=project_id).delete()
