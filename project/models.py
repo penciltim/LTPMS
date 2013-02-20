@@ -1,8 +1,11 @@
 #coding=utf-8
+from django.contrib.auth.models import User
 from django.db import models
+
 
 class Xiangmujingli(models.Model):
     xiangmujingli = models.CharField(u'名字', max_length=4)
+    user = models.ForeignKey(User)
     def __unicode__(self):
         return self.xiangmujingli
     class Meta:

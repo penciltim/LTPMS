@@ -37,42 +37,44 @@ def project_view(request, project_id):
     form = ProjectForm(instance=p)
     return render_to_response('project/project_view.html', {'form': form})
 
-# 增
-@permission_required('project.add_project')
+# add
+@login_required
 def project_add(request):
     if request.method == 'POST':
         form = ProjectForm(request.POST)
         if form.is_valid():
+            p = form.save(commit=False)
+            xiangmujingli = Xiangmujingli.objects.get(user=request.user)
+            p.xiangmujingli = xiangmujingli
             form.save()
             return HttpResponseRedirect('/project/')
     else:
         form = ProjectForm()
     return render_to_response('project/project_form.html', {'form': form}, context_instance=RequestContext(request))
-# 删
-@permission_required('project.delete_project')
+
+# delete
+@login_required
 def project_delete(request, project_id):
-    Project.objects.get(id=project_id).delete()
+    p = Project.objects.get(id=project_id)
+    if p.xiangmujingli == Xiangmujingli.objects.get(user=request.user):
+        p.delete()
     return HttpResponseRedirect('/project/')
 
-# 改
-@permission_required('project.change_project')
-def project_update(request):
-    project_list = Project.objects.all()
-    return render_to_response('project/project.html', locals())
-
-# 查
-@permission_required('project.change_project')
+# change
+@login_required
 def project_edit(request, project_id):
     p = Project.objects.get(id=project_id)
-    if request.method == 'POST':
-        form = ProjectForm(request.POST, instance=p)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/project/')
+    if p.xiangmujingli == Xiangmujingli.objects.get(user=request.user):
+        if request.method == 'POST':
+            form = ProjectForm(request.POST, instance=p)
+            if form.is_valid():
+                form.save()
+                return HttpResponseRedirect('/project/')
+        else:
+            form = ProjectForm(instance=p)
+        return render_to_response('project/project_form.html', {'form': form}, context_instance=RequestContext(request))
     else:
-        form = ProjectForm(instance=p)
-    return render_to_response('project/project_form.html', {'form': form}, context_instance=RequestContext(request))
-
+        return HttpResponseRedirect('/project/')
 
 def purchase(request):
     purchase_list = Purchase.objects.all()
