@@ -13,16 +13,19 @@
 	<a class="btn dropdown-toggle btn-mini btn-primary" data-toggle="dropdown" href="#"> 每页显示 <span class="caret"></span> </a>
 	<ul class="dropdown-menu">
 		<li>
-			<a href="?num_per_page=10{% if page %}&page={{ page }}{% endif %}">10</a>
+			<a href="?num_per_page=1">1</a>
 		</li>
 		<li>
-			<a href="?num_per_page=25{% if page %}&page={{ page }}{% endif %}">25</a>
+			<a href="?num_per_page=10">10</a>
 		</li>
 		<li>
-			<a href="?num_per_page=50{% if page %}&page={{ page }}{% endif %}">50</a>
+			<a href="?num_per_page=25">25</a>
 		</li>
 		<li>
-			<a href="?num_per_page=100{% if page %}&page={{ page }}{% endif %}">100</a>
+			<a href="?num_per_page=50">50</a>
+		</li>
+		<li>
+			<a href="?num_per_page=100">100</a>
 		</li>
 	</ul>
 </div>
@@ -59,7 +62,30 @@
 			<td>{{ p.shejipifujine }}</td>
 			<td>{{ p.shejipifuriqi }}</td>
 			<td>{{ p.xiangmuzhuangtai }}</td>
-			<td>{% if p.xiangmujingli.user = user %}<a href="{{ p.id }}/delete/"><i class="icon-trash"></i></a> | <a href="{{ p.id }}/edit/"><i class="icon-pencil"></i></a>{% endif %}</td>
+			<td>{% if p.xiangmujingli.user = user %}<a href="#delete_modal{{p.id}}" role="button" data-toggle="modal"><i class="icon-trash"></i></a> | <a href="{{ p.id }}/edit/"><i class="icon-pencil"></i></a>{% endif %}</td>
+			<!-- Modal -->
+			<div id="delete_modal{{p.id}}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						×
+					</button>
+					<h3 id="myModalLabel">请确认</h3>
+				</div>
+				<div class="modal-body">
+					<p class="text-center">
+						是否删除此项目：{{p.xiangmumingcheng}}
+					</p>
+				</div>
+				<div class="modal-footer">
+					<a href="{{ p.id }}/delete/">
+					<button class="btn btn-danger">
+						删除
+					</button></a>
+					<button class="btn" data-dismiss="modal" aria-hidden="true">
+						取消
+					</button>
+				</div>
+			</div>
 		</tr>
 	</tbody>
 	{% endfor %}
@@ -68,7 +94,7 @@
 	<ul>
 		{% if projects.has_previous %}
 		<li class="previous">
-			<a href="?{% if num_per_page %}num_per_page={{num_per_page}}&{% endif %}page={{ projects.previous_page_number }}">previous</a>
+			<a href="?page={{ projects.previous_page_number }}">previous</a>
 		</li>
 		{% else %}
 		<li class="disabled">
@@ -77,7 +103,7 @@
 		{% endif %}
 		{% if projects.has_next %}
 		<li>
-			<a href="?{% if num_per_page %}num_per_page={{num_per_page}}&{% endif %}page={{ projects.next_page_number }}">next</a>
+			<a href="?page={{ projects.next_page_number }}">next</a>
 		</li>
 		{% else %}
 		<li class="disabled">

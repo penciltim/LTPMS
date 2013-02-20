@@ -14,13 +14,18 @@ def home(request):
 
 @login_required
 def project_list(request):
+    if request.GET.get('num_per_page'):
+        request.session['num_per_page'] = request.GET.get('num_per_page')
+        return HttpResponseRedirect('/project/')
+    else:
+        try:
+            request.session['num_per_page']
+        except KeyError:
+            request.session['num_per_page'] = 25
     page = request.GET.get('page')
-    num_per_page = request.GET.get('num_per_page')
-    if not num_per_page:
-        num_per_page = 25
 #    need to get all objects everytime?
     project_list = Project.objects.all()
-    paginator = Paginator(project_list, num_per_page)
+    paginator = Paginator(project_list, request.session['num_per_page'])
     try:
         projects = paginator.page(page)
     except PageNotAnInteger:
