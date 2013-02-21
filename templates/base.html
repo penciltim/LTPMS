@@ -5,11 +5,13 @@
 		<script src="/static/bootstrap/js/bootstrap.min.js"></script>
 		<meta charset="utf-8">
 		<title>{% block title %}联通项目管理系统 {% endblock %}</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- 响应式设计 -->
+		<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+		<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<!-- 响应式设计 -->
+		<!-- <link href="/static/bootstrap/css/bootstrap-responsive.css" rel="stylesheet"> -->
 		<meta name="description" content="">
 		<meta name="author" content="Justim">
-		<!-- Le styles -->
-		<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<style>
 			body {
 				padding-top: 60px; /* 60px to make the container go all the way
@@ -31,9 +33,21 @@
 			{% block content %}{% endblock %}
 		</div>
 		{% endblock%}
-		<hr>
-		<div>
-			{% block footer %}© ChinaUnicom, powerd by Justim, Go to <a href="/admin">Admin</a>{% endblock %}
+		{% block footer %}
+		<div style="position: absolute;
+		bottom: 0;
+		width: 100%;
+		height: 72px;/*脚部的高度*/
+		clear:both;">
+			<hr>
+			<div class="row">
+				<div class="span4 offset12" id="footer">
+					<p class="pull-right">
+						© ChinaUnicom, Go to <a href="/admin">Admin</a>
+					</p>
+				</div>
+			</div>
 		</div>
+		{% endblock %}
 	</body>
 </html>
