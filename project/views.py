@@ -85,6 +85,9 @@ def purchase(request):
     purchase_list = Purchase.objects.all()
     return render_to_response('project/purchase_list.html', locals())
 
+def about(request):
+    return render_to_response('about.html')
+
 def display_meta(request):
     values = request.META.items()
     values.sort()

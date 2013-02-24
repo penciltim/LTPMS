@@ -1,16 +1,85 @@
 {% extends 'base_site.html' %}
 {% block title %}首页{% endblock %}
+{% block additional_header %}
+<link href="/static/css/sidenav.css" rel="stylesheet">
+{% endblock %}
+
+{% block navbar_active1 %}class="active"{% endblock %}
+
 {% block content %}
-<div class="hero-unit span11 offset2">
-	<div>
-		<h1> 欢迎您进入 项目管理系统! </h1>
-		<p>
-			&nbsp;
-		</p>
+<div class="container-fluid" style="padding: 20px">
+	<div class="row-fluid">
+		<div class="span2 sidebar">
+			<ul class="nav nav-list sidenav" data-spy="affix" data-offset-top="0">
+				<li class="active">
+					<a href="#hero1"><i class="icon-chevron-right"></i>hero1</a>
+				</li>
+				<li>
+					<a href="#hero2"><i class="icon-chevron-right"></i>hero2</a>
+				</li>
+				<li>
+					<a href="#hero3"><i class="icon-chevron-right"></i>hero3</a>
+				</li>
+				<li>
+					<a href="#hero4"><i class="icon-chevron-right"></i>hero4</a>
+				</li>
+				<li>
+					<a href="#hero5"><i class="icon-chevron-right"></i>hero5</a>
+				</li>
+			</ul>
+		</div>
+		<div class="span10">
+			<section id="hero1">
+				<div class="hero-unit">
+					<div>
+						<h1>一、</h1>
+						<p>
+							&nbsp;
+						</p>
+					</div>
+				</div>
+			</section>
+			<section id="hero2">
+				<div class="hero-unit">
+					<div>
+						<h1>二、</h1>
+						<p>
+							&nbsp;
+						</p>
+					</div>
+				</div>
+			</section>
+			<section id="hero3">
+				<div class="hero-unit">
+					<div>
+						<h1>三、</h1>
+						<p>
+							&nbsp;
+						</p>
+					</div>
+				</div>
+			</section>
+			<section id="hero4">
+				<div class="hero-unit">
+					<div>
+						<h1>四、</h1>
+						<p>
+							&nbsp;
+						</p>
+					</div>
+				</div>
+			</section>
+			<section id="hero5">
+				<div class="hero-unit">
+					<div>
+						<h1>五、</h1>
+						<p>
+							&nbsp;
+						</p>
+					</div>
+				</div>
+			</section>
+		</div>
 	</div>
-	<a class="btn btn-primary btn-large" href="/project/">
-	<div>
-		马上开始 »
-	</div> </a>
 </div>
 {% endblock %}

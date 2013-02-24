@@ -1,23 +1,30 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 	<head>
-		<script src="/static/jquery-1.9.1.min.js"></script>
-		<script src="/static/bootstrap/js/bootstrap.min.js"></script>
 		<meta charset="utf-8">
 		<title>{% block title %}联通项目管理系统 {% endblock %}</title>
 		<!-- 响应式设计 -->
 		<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
 		<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/static/css/cn.css" rel="stylesheet">
 		<!-- 响应式设计 -->
 		<!-- <link href="/static/bootstrap/css/bootstrap-responsive.css" rel="stylesheet"> -->
 		<meta name="description" content="">
 		<meta name="author" content="Justim">
-		<style>
+		<style type="text/css">
 			body {
-				padding-top: 60px; /* 60px to make the container go all the way
+				padding-top: 40px; /* 60px to make the container go all the way
 				 to the bottom of the topbar */
 			}
+			/*footer {
+			 position: absolute;
+			 bottom: 0;
+			 width: 100%;
+			 height: 72px;/*脚部的高度*/
+			clear: both;
+			}*/
 		</style>
+		{% block additional_header %}{% endblock %}
 		<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 		<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js">
@@ -26,28 +33,24 @@
 		<!-- Le fav and touch icons -->
 		<link rel="shortcut icon" href="#">
 	</head>
-	<body>
-		{% block body %}
-		<div class="container-fluid">
-			{% block navbar %}{% endblock %}
-			{% block content %}{% endblock %}
-		</div>
-		{% endblock%}
+	{% block body %}
+	<body data-spy="scroll" data-target=".sidebar">
+		{% block navbar %}{% endblock %}
+		{% block content %}{% endblock %}
 		{% block footer %}
-		<div style="position: absolute;
-		bottom: 0;
-		width: 100%;
-		height: 72px;/*脚部的高度*/
-		clear:both;">
+		<footer>
 			<hr>
-			<div class="row">
-				<div class="span4 offset12" id="footer">
-					<p class="pull-right">
-						© ChinaUnicom, Go to <a href="/admin">Admin</a>
-					</p>
-				</div>
+			<div class="span4 offset8" id="footer">
+				<p class="pull-right">
+					© ChinaUnicom, Go to <a href="/admin">Admin</a>
+				</p>
 			</div>
-		</div>
+		</footer>
 		{% endblock %}
+		<!-- Place js at the end of the document so the pages load faster -->
+		<script src="/static/jquery-1.9.1.min.js"></script>
+		<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+		{% block additional_script %}{% endblock %}
 	</body>
+	{% endblock %}
 </html>
