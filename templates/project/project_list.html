@@ -4,11 +4,11 @@
 {% block navbar_active1 %}{% endblock %}
 {% block navbar_active2 %}class="active"{% endblock %}
 
-{% block content %}
+{% block table %}
 <a href="add/">
 <button class="btn btn-primary btn-mini">
 	新增
-</button></a> Page {{ projects.number }} of {{ projects.paginator.num_pages }}.
+</button></a>
 <div class="btn-group">
 	<a class="btn dropdown-toggle btn-mini btn-primary" data-toggle="dropdown" href="#"> 每页显示 <span class="caret"></span> </a>
 	<ul class="dropdown-menu">
@@ -90,7 +90,7 @@
 	</tbody>
 	{% endfor %}
 </table>
-<div class="pagination pagination-mini">
+<div class="pagination pagination-mini span3">
 	<ul>
 		{% if projects.has_previous %}
 		<li class="previous">
@@ -110,6 +110,9 @@
 			<a>next</a>
 		</li>
 		{% endif %}
+		<li class="disabled">
+			<a>{{ projects.number }}/{{ projects.paginator.num_pages }}</a>
+		</li>
 	</ul>
 </div>
 {% endblock %}
