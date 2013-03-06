@@ -1,10 +1,11 @@
-from django.conf.urls import patterns, include, url
-from project.views import *
 from contact.views import *
+from django.conf import settings
+from django.conf.urls import patterns, include, url
+from django.contrib import admin
 from django.contrib.auth.views import login, logout
+from project.views import *
 
 # Uncomment the next two lines to enable the admin:
-from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -19,10 +20,22 @@ urlpatterns += patterns('project.views',
     url(r'^project/$', 'project_list'),
     url(r'^project/add/$', 'project_add'),
     url(r'^project/(\d+)/edit/$', 'project_edit'),
-    url(r'^project/(\d+)/$', 'project_view'),
     url(r'^project/(\d+)/delete/$', 'project_delete'),
     url(r'^purchase/$', 'purchase'),
     url(r'^about/$', 'about'),
-    (r'^accounts/login/$',  login),
+    
+    url(r'^weeklyreport/$', 'weeklyreport_list'),
+    url(r'^weeklyreport/add/$', 'weeklyreport_add'),
+    url(r'^weeklyreport/(\d+)/edit/$', 'weeklyreport_edit'),
+    url(r'^weeklyreport/(\d+)/delete/$', 'weeklyreport_delete'),
+    
+    (r'^accounts/login/$', login),
     (r'^accounts/logout/$', logout),
+)
+
+if settings.DEBUG:
+    urlpatterns += patterns('',
+            url(r"^uploads/(?P<path>.*)$", \
+                "django.views.static.serve", \
+                {"document_root": settings.MEDIA_ROOT, }),
 )

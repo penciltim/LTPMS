@@ -23,6 +23,9 @@
 				<li {% block navbar_active6 %}{% endblock %}>
 					<a href="/about/">关于</a>
 				</li>
+				<li {% block navbar_active7 %}{% endblock %}>
+                    <a href="/weeklyreport/">周报</a>
+                </li>
 			</ul>
 			{% if request.user.is_authenticated %}
 			<p class="navbar-text pull-right">

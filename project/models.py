@@ -76,3 +76,19 @@ class Order(models.Model):
     class Meta:
         verbose_name = u"订单"
         verbose_name_plural = verbose_name
+        
+class WeeklyReport(models.Model):
+    gongzuofenlei = models.CharField(u'工作分类', max_length=20)
+    xiangmumingcheng = models.CharField(u'项目名称', max_length=150)
+    zixiangmu = models.CharField(u'子项目', max_length=150)
+    xiangmujingli = models.ForeignKey(Xiangmujingli, verbose_name='项目经理')
+    jinzhan = models.CharField(u'累计进展', max_length=20)
+    benzhoujinzhan = models.TextField(u'本周进展')
+    xiazhoujihua = models.TextField(u'下周计划')
+    cunzaiwenti = models.TextField(u'存在问题')
+    jiejuejianyi = models.TextField(u'解决建议')
+    jiejueshijian = models.DateField(u'解决时间')
+    shuchuwendang = models.FileField(u'输出文档', upload_to='weeklyreport/')
+    class Meta:
+        verbose_name = u"周报"
+        verbose_name_plural = verbose_name
