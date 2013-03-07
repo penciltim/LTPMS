@@ -4,112 +4,115 @@
 {% block navbar_active1 %}{% endblock %}
 {% block navbar_active7 %}class="active"{% endblock %}
 
-{% block table %}
-<a href="add/">
-<button class="btn btn-primary btn-mini">
-    新增
-</button></a>
-<div class="btn-group">
-    <a class="btn dropdown-toggle btn-mini btn-primary" data-toggle="dropdown" href="#"> 每页显示 <span class="caret"></span> </a>
-    <ul class="dropdown-menu">
-        <li>
-            <a href="?num_per_page=1">1</a>
-        </li>
-        <li>
-            <a href="?num_per_page=10">10</a>
-        </li>
-        <li>
-            <a href="?num_per_page=25">25</a>
-        </li>
-        <li>
-            <a href="?num_per_page=50">50</a>
-        </li>
-        <li>
-            <a href="?num_per_page=100">100</a>
-        </li>
-    </ul>
-</div>
-<table class="table table-hover table-bordered table-condensed"  style="font-size: 12px">
-    <thead>
-        <tr>
-            <th>工作分类</th>
-            <th>项目名称</th>
-            <th>子项目</th>
-            <th>项目经理</th>
-            <th>累计进展</th>
-            <th>本周进展</th>
-            <th>下周计划</th>
-            <th>存在问题</th>
-            <th>解决建议</th>
-            <th>解决时间</th>
-            <th>输出文档</th>
-        </tr>
-    </thead>
-    {% for wr in weeklyreport_list %}
-    <tbody>
-        <tr>
-            <td>{{ wr.gongzuofenlei }}</td>
-            <td>{{ wr.xiangmumingcheng }}</td>
-            <td>{{ wr.zixiangmu }}</td>
-            <td>{{ wr.xiangmujingli }}</td>
-            <td>{{ wr.jinzhan }}</td>
-            <td>{{ wr.benzhoujinzhan }}</td>
-            <td>{{ wr.xiazhoujihua }}</td>
-            <td>{{ wr.cunzaiwenti }}</td>
-            <td>{{ wr.jiejuejianyi }}</td>
-            <td>{{ wr.jiejueshijian }}</td>
-            <td>{{ wr.shuchuwendang.name }} <a href="{{wr.shuchuwendang.url}}">下载</a></td>
-            <td>{% if wr.xiangmujingli.user = user %}<a href="#delete_modal{{wr.id}}" role="button" data-toggle="modal"><i class="icon-trash"></i></a> | <a href="{{ wr.id }}/edit/"><i class="icon-pencil"></i></a>{% endif %}</td>
-            <!-- Modal -->
-            <div id="delete_modal{{wr.id}}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        ×
-                    </button>
-                    <h3 id="myModalLabel">请确认</h3>
+{% block content %}
+<div style="padding: 20px 10px;">
+    <a href="add/">
+    <button class="btn btn-primary btn-mini">
+        新增
+    </button></a>
+    <div class="btn-group">
+        <a class="btn dropdown-toggle btn-mini btn-primary" data-toggle="dropdown" href="#"> 每页显示 {{request.session.num_per_page}}项<span class="caret"></span> </a>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="?num_per_page=1">1项</a>
+            </li>
+            <li>
+                <a href="?num_per_page=10">10项</a>
+            </li>
+            <li>
+                <a href="?num_per_page=25">25项</a>
+            </li>
+            <li>
+                <a href="?num_per_page=50">50项</a>
+            </li>
+            <li>
+                <a href="?num_per_page=100">100项</a>
+            </li>
+        </ul>
+    </div>
+    <table class="table table-hover table-bordered wrap"  style="font-size: 12px">
+        <thead>
+            <tr>
+                <th style="width: 52px;">工作分类</th>
+                <th style="width: 80px;">项目名称</th>
+                <th style="width: 52px;">子项目</th>
+                <th style="width: 52px;">项目经理</th>
+                <th style="width: 52px;">累计进展</th>
+                <th style="width: 180px;">本周进展</th>
+                <th style="width: 180px;">下周计划</th>
+                <th style="width: 180px;">存在问题</th>
+                <th style="width: 100px;">解决建议</th>
+                <th style="width: 64px;">解决时间</th>
+                <th style="width: 52px;">输出文档</th>
+                <th style="width: 37px;">操作</th>
+            </tr>
+        </thead>
+        {% for wr in weeklyreports %}
+        <tbody>
+            <tr>
+                <td style="text-align: center;">{{ wr.gongzuofenlei }}</td>
+                <td style="text-align: center;">{{ wr.xiangmumingcheng }}</td>
+                <td style="text-align: center;">{{ wr.zixiangmu }}</td>
+                <td style="text-align: center;">{{ wr.xiangmujingli }}</td>
+                <td style="text-align: center;">{{ wr.jinzhan }}</td>
+                <td>{{ wr.benzhoujinzhan }}</td>
+                <td>{{ wr.xiazhoujihua }}</td>
+                <td>{{ wr.cunzaiwenti }}</td>
+                <td>{{ wr.jiejuejianyi }}</td>
+                <td style="text-align: center;">{{ wr.jiejueshijian }}</td>
+                <td style="text-align: center;"><a href="{{wr.shuchuwendang.url}}">下载</a></td>
+                <td>{% if wr.xiangmujingli.user = user %}<a href="#delete_modal{{wr.id}}" role="button" data-toggle="modal"><i class="icon-trash"></i></a> | <a href="{{ wr.id }}/edit/"><i class="icon-pencil"></i></a>{% endif %}</td>
+                <!-- Modal -->
+                <div id="delete_modal{{wr.id}}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h3 id="myModalLabel">请确认</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-center">
+                            是否删除此记录
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="{{ wr.id }}/delete/">
+                        <button class="btn btn-danger">
+                            删除
+                        </button></a>
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">
+                            取消
+                        </button>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <p class="text-center">
-                        是否删除此记录
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <a href="{{ wr.id }}/delete/">
-                    <button class="btn btn-danger">
-                        删除
-                    </button></a>
-                    <button class="btn" data-dismiss="modal" aria-hidden="true">
-                        取消
-                    </button>
-                </div>
-            </div>
-        </tr>
-    </tbody>
-    {% endfor %}
-</table>
-<div class="pagination pagination-mini span3">
-    <ul>
-        {% if weeklyreports.has_previous %}
-        <li class="previous">
-            <a href="?page={{ weeklyreports.previous_page_number }}">previous</a>
-        </li>
-        {% else %}
-        <li class="disabled">
-            <a>previous</a>
-        </li>
-        {% endif %}
-        {% if weeklyreports.has_next %}
-        <li>
-            <a href="?page={{ weeklyreports.next_page_number }}">next</a>
-        </li>
-        {% else %}
-        <li class="disabled">
-            <a>next</a>
-        </li>
-        {% endif %}
-        <li class="disabled">
-            <a>{{ weeklyreports.number }}/{{ weeklyreports.paginator.num_pages }}</a>
-        </li>
-    </ul>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+    <div class="pagination pagination-mini span3">
+        <ul>
+            {% if weeklyreports.has_previous %}
+            <li class="previous">
+                <a href="?page={{ weeklyreports.previous_page_number }}">previous</a>
+            </li>
+            {% else %}
+            <li class="disabled">
+                <a>previous</a>
+            </li>
+            {% endif %}
+            {% if weeklyreports.has_next %}
+            <li>
+                <a href="?page={{ weeklyreports.next_page_number }}">next</a>
+            </li>
+            {% else %}
+            <li class="disabled">
+                <a>next</a>
+            </li>
+            {% endif %}
+            <li class="disabled">
+                <a>{{ weeklyreports.number }}/{{ weeklyreports.paginator.num_pages }}</a>
+            </li>
+        </ul>
+    </div>
 </div>
 {% endblock %}

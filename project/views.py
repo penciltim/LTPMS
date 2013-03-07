@@ -142,40 +142,24 @@ def weeklyreport_add(request):
 
 # delete
 @login_required
-def weeklyreport_delete(request, project_id):
-    p = Project.objects.get(id=project_id)
-    if p.xiangmujingli == Xiangmujingli.objects.get(user=request.user):
-        p.delete()
+def weeklyreport_delete(request, wr_id):
+    wr = WeeklyReport.objects.get(id=wr_id)
+    if wr.xiangmujingli == Xiangmujingli.objects.get(user=request.user):
+        wr.delete()
     return HttpResponseRedirect('/weeklyreport/')
 
 # change
 @login_required
-def weeklyreport_edit(request, project_id):
-    p = Project.objects.get(id=project_id)
-    if p.xiangmujingli == Xiangmujingli.objects.get(user=request.user):
+def weeklyreport_edit(request, wr_id):
+    wr = WeeklyReport.objects.get(id=wr_id)
+    if wr.xiangmujingli == Xiangmujingli.objects.get(user=request.user):
         if request.method == 'POST':
-            form = ProjectForm(request.POST, instance=p)
+            form = WeeklyReportForm(request.POST, request.FILES, instance=wr)
             if form.is_valid():
                 form.save()
                 return HttpResponseRedirect('/weeklyreport/')
         else:
-            form = ProjectForm(instance=p)
+            form = WeeklyReportForm(instance=wr)
         return render_to_response('weeklyreport/form.html', {'form': form}, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect('/weeklyreport/')
-    
-
-# test uploadfiles
-def upload_file(request):
-    if request.method == 'POST':
-        form = UploadFileForm(request.POST, request.FILES)
-        if form.is_valid():
-            handle_uploaded_file(request.FILES['file'])
-            return HttpResponseRedirect('/success/url/')
-    else:
-        form = UploadFileForm()
-    return render_to_response('upload.html', {'form': form})
-def handle_uploaded_file(f):
-    with open('some/file/name.txt', 'wb+') as destination:
-        for chunk in f.chunks():
-            destination.write(chunk)

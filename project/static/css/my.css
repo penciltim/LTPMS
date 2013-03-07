@@ -1,8 +1,5 @@
-
-/* Jumbotrons
- -------------------------------------------------- */
-/* Base class
- ------------------------- */
+/* Jumbotrons -------------------------------------------------- */
+/* Base class ------------------------- */
 .jumbotron {
 	position: relative;
 	padding: 40px 0;
@@ -47,21 +44,21 @@
 	text-shadow: 0 0 10px rgba(255,255,255,.25);
 }
 /* Pattern overlay
-------------------------- */
+ ------------------------- */
 .jumbotron .container {
-  position: relative;
-  z-index: 2;
+	position: relative;
+	z-index: 2;
 }
 .jumbotron:after {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: url(../img/masthead-pattern.png) repeat center center;
-  opacity: .4;
+	content: '';
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: url(../img/masthead-pattern.png) repeat center center;
+	opacity: .4;
 }
 
 h1, h3, h3, .masthead p, .subhead p, .marketing h2 {
@@ -82,4 +79,18 @@ h1, h3, h3, .masthead p, .subhead p, .marketing h2 {
 }
 .subhead .navbar {
 	display: none;
+}
+
+.table thead th {
+	padding: 0 4px;
+	text-align: center;
+	vertical-align: middle;
+}
+.table td {
+	padding: 0 4px;
+}
+.wrap {
+	table-layout: fixed;
+	word-break: break-all;
+	overflow: hidden;
 }
