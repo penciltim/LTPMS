@@ -24,13 +24,15 @@ urlpatterns += patterns('project.views',
     url(r'^purchase/$', 'purchase'),
     url(r'^about/$', 'about'),
     
+    (r'^accounts/login/$', login),
+    (r'^accounts/logout/$', logout),
+)
+
+urlpatterns += patterns('weeklyreport.views',
     url(r'^weeklyreport/$', 'weeklyreport_list'),
     url(r'^weeklyreport/add/$', 'weeklyreport_add'),
     url(r'^weeklyreport/(\d+)/edit/$', 'weeklyreport_edit'),
     url(r'^weeklyreport/(\d+)/delete/$', 'weeklyreport_delete'),
-    
-    (r'^accounts/login/$', login),
-    (r'^accounts/logout/$', logout),
 )
 
 if settings.DEBUG:

@@ -3,3 +3,6 @@ encoding//ltpms/settings.py=utf-8
 encoding//project/forms.py=utf-8
 encoding//project/models.py=utf-8
 encoding//project/views.py=utf-8
+encoding//weeklyreport/forms.py=utf-8
+encoding//weeklyreport/models.py=utf-8
+encoding//weeklyreport/views.py=utf-8

@@ -120,6 +120,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'project',
     'contact',
+    'weeklyreport',
 )
 
 DATE_FORMAT = 'Y-m-d'

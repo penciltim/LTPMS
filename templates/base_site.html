@@ -29,7 +29,7 @@
 			</ul>
 			{% if request.user.is_authenticated %}
 			<p class="navbar-text pull-right">
-				欢迎您，{{ request.user.username}}，
+				欢迎您，{{ request.user.last_name}}{{ request.user.first_name}}
 				<a href="/accounts/logout/?next=/accounts/login/">退出登录</a>
 			</p>
 			{% endif %}
