@@ -16,6 +16,7 @@ class WeeklyReport(models.Model):
     jiejueshijian = models.CharField(u'解决时间', max_length=20, blank=True)
     shuchuwendang = models.FileField(u'输出文档', upload_to='weeklyreport/', blank=True)
     create_time = models.DateTimeField(u'创建时间', auto_now_add=True)
+    week = models.DateField(u'所属周')
     class Meta:
         verbose_name = u"周报"
         verbose_name_plural = verbose_name

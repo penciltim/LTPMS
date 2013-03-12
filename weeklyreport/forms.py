@@ -1,4 +1,4 @@
-#coding=utf-8
+# coding=utf-8
 from django import forms
 from weeklyreport.models import WeeklyReport
 
@@ -6,4 +6,4 @@ from weeklyreport.models import WeeklyReport
 class WeeklyReportForm(forms.ModelForm):
     class Meta:
         model = WeeklyReport
-        exclude = ('xiangmujingli',)
+        exclude = ('xiangmujingli', 'create_time', 'week')

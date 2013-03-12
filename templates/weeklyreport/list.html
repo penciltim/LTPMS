@@ -30,6 +30,32 @@
             </li>
         </ul>
     </div>
+    <div class="btn-group">
+        <a class="btn dropdown-toggle btn-mini btn-primary" data-toggle="dropdown" href="#">项目经理 <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="/weeklyreport/">全部</a>
+            </li>
+            {% for pm in xiangmujingli_list %}
+            <li>
+                <a href="?pm_id={{pm.id}}">{{pm}}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="btn-group">
+        <a class="btn dropdown-toggle btn-mini btn-primary" data-toggle="dropdown" href="#">查看过往周报 <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="/weeklyreport/?week=2013-03-10">2013-03-11</a>
+            </li>
+            {% for pm in xiangmujingli_list %}
+            <li>
+                <a href="?pm_id={{pm.id}}">{{pm}}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
     <table class="table table-hover table-bordered wrap"  style="font-size: 12px">
         <thead>
             <tr>
@@ -60,7 +86,7 @@
                 <td>{{ wr.cunzaiwenti }}</td>
                 <td>{{ wr.jiejuejianyi }}</td>
                 <td style="text-align: center;">{{ wr.jiejueshijian }}</td>
-                <td style="text-align: center;">{% if wr.shuchuwendang %}<a href="{{wr.shuchuwendang.url}}">下载</a>{% endif %}</td>
+                <td style="text-align: center;">{% if wr.shuchuwendang %}<a href="{{wr.shuchuwendang.url}}"><i class="icon-download-alt"></i></a>{% endif %}</td>
                 <td>{% if wr.xiangmujingli.user = user %}<a href="#delete_modal{{wr.id}}" role="button" data-toggle="modal"><i class="icon-trash"></i></a> | <a href="{{ wr.id }}/edit/"><i class="icon-pencil"></i></a>{% endif %}</td>
                 <!-- Modal -->
                 <div id="delete_modal{{wr.id}}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
